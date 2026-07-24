@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 void main() => runApp(Emozac());
 
 class Emozac extends StatelessWidget {
+  const Emozac({super.key});
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Emozac',
@@ -13,15 +16,18 @@ class Emozac extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  Widget build(BuildContext context) {
-    int _currentYear = DateTime.now().year;
-    int _currentMonth = DateTime.now().month;
+  const MyHomePage({super.key});
 
-    int padding = DateTime(_currentYear, _currentMonth, 1).weekday % 7;
-    int daysInMonth = DateTime(_currentYear, _currentMonth + 1, 0).day;
+  @override
+  Widget build(BuildContext context) {
+    int currentYear = DateTime.now().year;
+    int currentMonth = DateTime.now().month;
+
+    int padding = DateTime(currentYear, currentMonth, 1).weekday % 7;
+    int daysInMonth = DateTime(currentYear, currentMonth + 1, 0).day;
     return Scaffold(
       appBar: AppBar(
-        title: Text('$_currentMonth 월'),
+        title: Text('$currentMonth 월'),
         centerTitle: true,
         elevation: 0.0,
       ),
@@ -29,11 +35,11 @@ class MyHomePage extends StatelessWidget {
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 7,
           ),
-        itemCount: 42,
+        itemCount: padding + daysInMonth,
         itemBuilder: (context, index) {
           int actualDay = index - padding + 1;
           
-          if(index <padding || actualDay > daysInMonth) return Container();
+          if(index <padding) return Container();
 
           return Container(child: Text('$actualDay'),);
         },

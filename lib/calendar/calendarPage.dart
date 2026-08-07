@@ -19,23 +19,17 @@ class _CalendarState extends State<CalendarPage> {
 
   DateTime tempDate;
 
-  void nextMonth() {
+  void changeMonth(int direction){
     setState(() {
-      tempDate = DateTime(displayedYear, displayedMonth + 1, displayedDay);
+      tempDate = DateTime(displayedYear, displayedMonth + direction, displayedDay);
       displayedYear = tempDate.year;
       displayedMonth = tempDate.month;
       displayedDay = tempDate.day; 
     });
   }
 
-  void previousMonth() {
-    setState(() {
-      tempDate = DateTime(displayedYear, displayedMonth -1, displayedDay);
-      displayedYear = tempDate.year;
-      displayedMonth = tempDate.month;
-      displayedDay = tempDate.day; 
-    });
-  }
+  void previousMonth()=> changeMonth(-1);
+  void nextMonth()=> changeMonth(1);
 
   @override
   Widget build(BuildContext context) {

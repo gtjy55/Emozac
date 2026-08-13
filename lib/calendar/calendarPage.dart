@@ -8,28 +8,27 @@ class CalendarPage extends StatefulWidget {
 }
 
 class _CalendarState extends State<CalendarPage> {
-  // today
-  int currentYear = DateTime.now().year;
-  int currentMonth = DateTime.now().month;
-  int currentDay = DateTime.now().day;
+  var today = DateTime.now();
 
   int displayedYear = 2026;
   int displayedMonth = 8;
   int displayedDay = 1;
 
-  DateTime tempDate;
-
-  void changeMonth(int direction){
+  void changeMonth(int direction) {
     setState(() {
-      tempDate = DateTime(displayedYear, displayedMonth + direction, displayedDay);
+      DateTime tempDate = DateTime(
+        displayedYear,
+        displayedMonth + direction,
+        displayedDay,
+      );
       displayedYear = tempDate.year;
       displayedMonth = tempDate.month;
-      displayedDay = tempDate.day; 
+      displayedDay = tempDate.day;
     });
   }
 
-  void previousMonth()=> changeMonth(-1);
-  void nextMonth()=> changeMonth(1);
+  void previousMonth() => changeMonth(-1);
+  void nextMonth() => changeMonth(1);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +40,7 @@ class _CalendarState extends State<CalendarPage> {
           onPressed: previousMonth,
           icon: Icon(Icons.keyboard_arrow_left),
         ),
-        title: Text('$displayedYear 년 $displayedMonth 월'),
+        title: Text('$displayedYear년 $displayedMonth월'),
         actions: [
           IconButton(
             onPressed: nextMonth,
@@ -52,8 +51,10 @@ class _CalendarState extends State<CalendarPage> {
         elevation: 0.0,
       ),
       body: Container(
-        decoration: BoxDecoration(color: Colors.blue),
-        child: Column(
+        decoration: BoxDecoration(
+          color: Colors.blueGrey,
+        ),
+        child: Column(         
           children: [
             Row(
               children: [
@@ -77,13 +78,19 @@ class _CalendarState extends State<CalendarPage> {
 
                   if (index < padding) return Container();
 
-                  return Text('$actualDay');
+                  
+
+                  return Container(
+                    decoration: BoxDecoration(),
+                    child: Text('$actualDay'),
+                  );
                 },
               ),
             ),
           ],
         ),
       ),
+
     );
   }
 }

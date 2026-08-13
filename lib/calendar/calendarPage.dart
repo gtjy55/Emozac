@@ -41,7 +41,7 @@ class _CalendarState extends State<CalendarPage> {
           icon: Icon(Icons.keyboard_arrow_left),
         ),
         title: Text('$displayedYear년 $displayedMonth월'),
-        actions: [
+        actions: <Widget>[
           IconButton(
             onPressed: nextMonth,
             icon: Icon(Icons.keyboard_arrow_right),
@@ -52,19 +52,19 @@ class _CalendarState extends State<CalendarPage> {
       ),
       body: Container(
         decoration: BoxDecoration(
-          color: Colors.blueGrey,
+          //color: Colors.blueGrey,
         ),
-        child: Column(         
-          children: [
+        child: Column(
+          children: <Widget>[
             Row(
               children: [
-                Expanded(child: Text('일')),
-                Expanded(child: Text('월')),
-                Expanded(child: Text('화')),
-                Expanded(child: Text('수')),
-                Expanded(child: Text('목')),
-                Expanded(child: Text('금')),
-                Expanded(child: Text('토')),
+                Expanded(child: Center(child: Text('일'),)),
+                Expanded(child: Center(child: Text('월'),)),
+                Expanded(child: Center(child: Text('화'),)),
+                Expanded(child: Center(child: Text('수'),)),
+                Expanded(child: Center(child: Text('목'),)),
+                Expanded(child: Center(child: Text('금'),)),
+                Expanded(child: Center(child: Text('토'),)),
               ],
             ),
             Expanded(
@@ -78,11 +78,37 @@ class _CalendarState extends State<CalendarPage> {
 
                   if (index < padding) return Container();
 
-                  
+                  if (displayedYear == today.year &&
+                      displayedMonth == today.month &&
+                      displayedDay == actualDay) {
+                    return Container(
+                      child: Column(
+                        children: <Widget>[
+                          TextButton(
+                            onPressed: () {},
+                            style: TextButton.styleFrom(
+                              backgroundColor: Colors.amber,
+                            ),
+                            child: Text(
+                              '$actualDay',
+                              style: TextStyle(
+                                fontWeight: FontWeight(900),
+                                //backgroundColor: Colors.amber,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
 
                   return Container(
                     decoration: BoxDecoration(),
-                    child: Text('$actualDay'),
+                    child: Column(
+                      children: <Widget>[
+                        TextButton(onPressed: () {}, child: Text('$actualDay')),
+                      ],
+                    ),
                   );
                 },
               ),
@@ -90,7 +116,6 @@ class _CalendarState extends State<CalendarPage> {
           ],
         ),
       ),
-
     );
   }
 }

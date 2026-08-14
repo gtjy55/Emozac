@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class CalendarPage extends StatefulWidget {
   const CalendarPage({super.key});
 
@@ -9,6 +10,7 @@ class CalendarPage extends StatefulWidget {
 
 class _CalendarState extends State<CalendarPage> {
   var today = DateTime.now();
+  DateTime? selectedDate;
 
   int displayedYear = 2026;
   int displayedMonth = 8;
@@ -26,6 +28,8 @@ class _CalendarState extends State<CalendarPage> {
       displayedDay = tempDate.day;
     });
   }
+
+  
 
   void previousMonth() => changeMonth(-1);
   void nextMonth() => changeMonth(1);
@@ -91,8 +95,7 @@ class _CalendarState extends State<CalendarPage> {
                           onPressed: () {},
                           style: TextButton.styleFrom(
                             backgroundColor: isToday
-                                ? Colors.amber
-                                : Colors.transparent,
+                                ? Colors.amber : Colors.transparent,
                           ),
                           child: Text('$actualDay'),
                         ),

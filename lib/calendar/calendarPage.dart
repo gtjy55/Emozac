@@ -58,13 +58,13 @@ class _CalendarState extends State<CalendarPage> {
           children: <Widget>[
             Row(
               children: [
-                Expanded(child: Center(child: Text('일'),)),
-                Expanded(child: Center(child: Text('월'),)),
-                Expanded(child: Center(child: Text('화'),)),
-                Expanded(child: Center(child: Text('수'),)),
-                Expanded(child: Center(child: Text('목'),)),
-                Expanded(child: Center(child: Text('금'),)),
-                Expanded(child: Center(child: Text('토'),)),
+                Expanded(child: Center(child: Text('일'))),
+                Expanded(child: Center(child: Text('월'))),
+                Expanded(child: Center(child: Text('화'))),
+                Expanded(child: Center(child: Text('수'))),
+                Expanded(child: Center(child: Text('목'))),
+                Expanded(child: Center(child: Text('금'))),
+                Expanded(child: Center(child: Text('토'))),
               ],
             ),
             Expanded(
@@ -76,37 +76,26 @@ class _CalendarState extends State<CalendarPage> {
                 itemBuilder: (context, index) {
                   int actualDay = index - padding + 1;
 
-                  if (index < padding) return Container();
-
-                  if (displayedYear == today.year &&
+                  bool isToday =
+                      (displayedYear == today.year &&
                       displayedMonth == today.month &&
-                      displayedDay == actualDay) {
-                    return Container(
-                      child: Column(
-                        children: <Widget>[
-                          TextButton(
-                            onPressed: () {},
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.amber,
-                            ),
-                            child: Text(
-                              '$actualDay',
-                              style: TextStyle(
-                                fontWeight: FontWeight(900),
-                                //backgroundColor: Colors.amber,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }
+                      actualDay == today.day);
+
+                  if (index < padding) return Container();
 
                   return Container(
                     decoration: BoxDecoration(),
                     child: Column(
                       children: <Widget>[
-                        TextButton(onPressed: () {}, child: Text('$actualDay')),
+                        TextButton(
+                          onPressed: () {},
+                          style: TextButton.styleFrom(
+                            backgroundColor: isToday
+                                ? Colors.amber
+                                : Colors.transparent,
+                          ),
+                          child: Text('$actualDay'),
+                        ),
                       ],
                     ),
                   );

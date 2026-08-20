@@ -27,6 +27,20 @@ class _CalendarState extends State<CalendarPage> {
     setState(() {
       selectedDate = DateTime(displayedDate.year, displayedDate.month, dayNumber);
     });
+
+    showModalBottomSheet(context: context, builder: (BuildContext context){
+      return Container(
+        height: 900,
+        decoration: BoxDecoration(
+          
+        ),
+        child: Column(
+          children: <Widget>[
+
+          ],
+        ),
+      );
+    });
   }
 
   void goToPreviousMonth()=>changeDisplayedMonth(-1);
@@ -52,7 +66,7 @@ class _CalendarState extends State<CalendarPage> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      body: calendarWidget(showDate: displayedDate, onDaySelected: handleDaySelected,)
+      body: calendarWidget(showDate: displayedDate, onDaySelected: handleDaySelected, selectedDate: selectedDate,)
     );
   }
 }

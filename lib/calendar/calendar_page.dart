@@ -52,7 +52,7 @@ class _CalendarState extends State<CalendarPage> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      body: CalendarWidget(showDate: displayDate, onDaySelected: handleDaySelected, selectedDate: selectedDate,)
+      body: CalendarWidget(displayDate: displayDate, onDaySelected: handleDaySelected, selectedDate: selectedDate,)
     );
   }
 }

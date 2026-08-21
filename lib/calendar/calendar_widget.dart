@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 import 'day_cell.dart';
 
-class calendarWidget extends StatelessWidget {
-  final DateTime showDate;
+class CalendarWidget extends StatelessWidget {
+  final DateTime displayDate;
   final ValueChanged<int> onDaySelected;
   final DateTime? selectedDate;
 
-  const calendarWidget({
+  const CalendarWidget({
     super.key,
-    required this.showDate,
+    required this.displayDate,
     required this.onDaySelected,
     required this.selectedDate,
   });
 
+  final List weekdayNames = const ['일', '월', '화', '수', '목', '금', '토'];
+
   @override
   Widget build(BuildContext context) {
     var today = DateTime.now();
-    int firstDayOffset = DateTime(showDate.year, showDate.month, 1).weekday % 7;
-    int lastDay = DateTime(showDate.year, showDate.month + 1, 0).day;
+    int firstDayOffset = DateUtils.firstDayOffset(displayDate.year, displayDate.month,MaterialLocalizations.of(context));
+    int lastDay = DateUtils.getDaysInMonth(displayDate.year, displayDate.month);
+
+    
     return Container(
       decoration: BoxDecoration(
         //color: Colors.blueGrey,
@@ -25,15 +29,11 @@ class calendarWidget extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Row(
-            children: [
-              Expanded(child: Center(child: Text('일'))),
-              Expanded(child: Center(child: Text('월'))),
-              Expanded(child: Center(child: Text('화'))),
-              Expanded(child: Center(child: Text('수'))),
-              Expanded(child: Center(child: Text('목'))),
-              Expanded(child: Center(child: Text('금'))),
-              Expanded(child: Center(child: Text('토'))),
-            ],
+            children: List.generate(weekdayNames.length, (index) {
+              return Expanded(
+                child: Text(weekdayNames[index], textAlign: TextAlign.center),
+              );
+            }),
           ),
           Expanded(
             child: GridView.builder(
@@ -45,14 +45,14 @@ class calendarWidget extends StatelessWidget {
                 int dayNumber = index - firstDayOffset + 1;
 
                 bool isToday =
-                    (showDate.year == today.year &&
-                    showDate.month == today.month &&
+                    (displayDate.year == today.year &&
+                    displayDate.month == today.month &&
                     dayNumber == today.day);
 
                 bool isSelected =
                     (selectedDate != null &&
-                    selectedDate?.year == showDate.year &&
-                    selectedDate?.month == showDate.month &&
+                    selectedDate?.year == displayDate.year &&
+                    selectedDate?.month == displayDate.month &&
                     selectedDate?.day == dayNumber);
 
                 if (index < firstDayOffset) return Container();

@@ -25,7 +25,7 @@ class DayCell extends StatelessWidget {
         onTap: onTap,
         child: Column(
           children: <Widget>[
-            Text(textAlign: TextAlign.center, '$dayNumber', )
+            Text('$dayNumber', textAlign: TextAlign.center,)
           ],
         ),       
       ),

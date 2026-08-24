@@ -38,8 +38,7 @@ class _CalendarState extends State<CalendarPage> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: ()=>setState(() {
-            displayDate = DateUtils.addMonthsToMonthDate(displayDate, -1);
-  }),
+            displayDate = DateUtils.addMonthsToMonthDate(displayDate, -1);}),
           icon: Icon(Icons.keyboard_arrow_left),
         ),
         title: Text('${displayDate.year}년 ${displayDate.month}월'),

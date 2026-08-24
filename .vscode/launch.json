@@ -1,0 +1,66 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "Emozac",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "Emozac (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "Emozac (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "chambray-edge",
+            "cwd": ".kilo\\worktrees\\chambray-edge",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "chambray-edge (profile mode)",
+            "cwd": ".kilo\\worktrees\\chambray-edge",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "chambray-edge (release mode)",
+            "cwd": ".kilo\\worktrees\\chambray-edge",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "cumbersome-modem",
+            "cwd": ".kilo\\worktrees\\cumbersome-modem",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "cumbersome-modem (profile mode)",
+            "cwd": ".kilo\\worktrees\\cumbersome-modem",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "cumbersome-modem (release mode)",
+            "cwd": ".kilo\\worktrees\\cumbersome-modem",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

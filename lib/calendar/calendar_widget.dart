@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 import 'day_cell.dart';
 
+enum WeekDay {
+  sunday,
+  monday,
+  tuesday,
+  wednesday,
+  thursday,
+  friday,
+  saturday,
+}
+
 class CalendarWidget extends StatelessWidget {
   final DateTime displayDate;
   final ValueChanged<int> onDaySelected;
@@ -13,15 +23,20 @@ class CalendarWidget extends StatelessWidget {
     required this.selectedDate,
   });
 
-  final List weekdayNames = const ['일', '월', '화', '수', '목', '금', '토'];
+  
 
   @override
   Widget build(BuildContext context) {
     var today = DateTime.now();
-    int firstDayOffset = DateUtils.firstDayOffset(displayDate.year, displayDate.month,MaterialLocalizations.of(context));
+    int firstDayOffset = DateUtils.firstDayOffset(displayDate.year, displayDate.month, MaterialLocalizations.of(context));
     int lastDay = DateUtils.getDaysInMonth(displayDate.year, displayDate.month);
 
+    int localfirstDayOfWeekIndex = MaterialLocalizations.of(context).firstDayOfWeekIndex;
     
+    List<WeekDay> weekdaysBeforeFirstDay  = WeekDay.values.sublist(0, localfirstDayOfWeekIndex);
+    List<WeekDay> weekdaysFromFirstDay = WeekDay.values.sublist(localfirstDayOfWeekIndex);
+    List<WeekDay> orderedWeekdays = weekdaysFromFirstDay + weekdaysBeforeFirstDay;
+
     return Container(
       decoration: BoxDecoration(
         //color: Colors.blueGrey,
@@ -29,9 +44,9 @@ class CalendarWidget extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Row(
-            children: List.generate(weekdayNames.length, (index) {
+            children: List.generate(orderedWeekdays.length, (index) {
               return Expanded(
-                child: Text(weekdayNames[index], textAlign: TextAlign.center),
+                child: Text(orderedWeekdays[index].toString(), textAlign: TextAlign.center),
               );
             }),
           ),
